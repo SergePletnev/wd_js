@@ -1,1 +1,1 @@
-# wd_js
+# WebDriver Js Training

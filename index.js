@@ -43,11 +43,6 @@ function createNewRepository(repoName) {
             return driver.findElement(By.id('repository_name')).sendKeys(repoName);
         })
         .then(() => {
-            setTimeout(() => {
-                console.log('wait for [Create repository] button');
-            }, 3000);
-        })
-        .then(() => {
             return driver.wait(until.elementLocated(By.css('div > button[type="submit"]')), 3000);
         })
         .then((el) => {
@@ -55,6 +50,35 @@ function createNewRepository(repoName) {
         })
 }
 
+function renameRepository() {
+    driver.findElement(By.linkText('Settings')).click()
+        .then(() => {
+            return driver.findElement(By.id('rename_field')).sendKeys('_renamed');
+        })
+        .then(() => {
+            driver.sleep(1000);
+            return driver.wait(until.elementLocated(By.css('form.d-flex.js-edit-repo-container > button')), 3000);
+        })
+        .then((el) => {
+            return el.click();
+        })
+}
+
+function deleteRepository() {
+    driver.findElement(By.linkText('Settings')).click()
+        .then(() => {
+            return driver.findElement(By.xpath('//summary[contains(text(),"Delete this repository")]')).click();
+        })
+        .then(() => {
+            return driver.findElement(By.xpath('//p[1]/strong[2]')).getText();
+        })
+        .then((repoName) => {
+            return driver.findElement(By.css('input[aria-label="Type in the name of the repository to confirm that you want to delete this repository."]')).sendKeys(repoName);
+        })
+        .then(() => {
+            return driver.findElement(By.xpath('//button[contains(text(),"I understand the consequences, delete this reposit")]')).click();
+        })
+}
 
 function handleFailure(err) {
     console.error('Something went wrong\n', err.stack, '\n');
@@ -74,62 +98,12 @@ driver.get('https://github.com/login')
     .then(() => {
         return createNewRepository(repoName);
     })
-
+    .then(() => {
+        return renameRepository();
+    })
+    .then(() => {
+        return deleteRepository();
+    })
     .then(
         closeBrowser()
     );
-
-/////////////////////////////////////////////////////////////////////////////////////
-
-// function logTitle() {
-//     driver.getTitle().then(function (title) {
-//         console.log('Current Page Title: ' + title);
-//     });
-// }
-
-// function logModelTitle() {
-//     driver.findElement(By.css(".model")).then(function (el) {
-//         el.getText().then(function (text) {
-//             console.log('Current Model Title: ' + text)
-//         });
-//     });
-// }
-
-// function clickLink(link) {
-//     link.click();
-// }
-
-
-
-// function findMostRelevant() {
-//     return driver.findElements(By.css('.sr-heading a')).then(function (result) {
-//         return result[0];
-//     });
-// }
-
-// driver.get('http://www.kia.com/us/en/search')
-//     .then(() => {
-//         return driver.findElement(By.name("q")).sendKeys('sorento');
-//     }).then(() => {
-//         return driver.findElement(By.css(".search-form div button")).click();
-//     }).then(() => {
-//         return driver.wait(findMostRelevant, 2000);
-//     }).then((link) => {
-//         return clickLink(link);
-//     }).then(() => {
-//         return logTitle();
-//     }).then(() => {
-//         return logModelTitle();
-//     }).then(() => {
-//         return driver.findElement(By.linkText("OFFERS")).click();
-//     }).then(() => {
-//         driver.findElement(By.partialLinkText("Quote")).click();
-//     }).then(() => {
-//         driver.findElement(By.name("zip-input")).sendKeys('36511');
-//     }).then(() => {
-//         driver.findElement(By.className("zip-go")).click();
-//     }).then(() => {
-//         return closeBrowser();
-//     });
-
-//////////////////////////////////////////////////////////////////////////////////
