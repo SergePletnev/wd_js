@@ -1,0 +1,25 @@
+{
+  "name": "webdriver_js",
+  "version": "1.0.0",
+  "description": "WebDriver_JS Task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergePletnev/wd_js_jasmine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergePletnev/wd_js_jasmine/issues"
+  },
+  "homepage": "https://github.com/SergePletnev/wd_js_jasmine#readme",
+  "dependencies": {
+    "chromedriver": "^2.40.0",
+    "geckodriver": "^1.11.0",
+    "selenium-webdriver": "^3.6.0"
+  },
+  "keywords": []
+}
