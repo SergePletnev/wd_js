@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SergePletnev/wd_js_jasmine.git"
+    "url": "git+https://github.com/SergePletnev/wd_js.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SergePletnev/wd_js_jasmine/issues"
+    "url": "https://github.com/SergePletnev/wd_js/issues"
   },
-  "homepage": "https://github.com/SergePletnev/wd_js_jasmine#readme",
+  "homepage": "https://github.com/SergePletnev/wd_js#readme",
   "dependencies": {
     "chromedriver": "^2.40.0",
     "geckodriver": "^1.11.0",
